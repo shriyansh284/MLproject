@@ -1,153 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Performance Prediction | Home</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Performance Prediction | Home</title>
+    <style>
+      /* ===== FONT IMPORT (Fix #1) ===== */
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
 
-  <style>
-    /* ===== Base Reset ===== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-    }
-
-    /* ===== Background ===== */
-    body {
-      background: radial-gradient(circle at top left, #6c63ff, #00b4d8, #001f54);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* ===== Floating Blur Circles ===== */
-    .blur-circle {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.6;
-      animation: float 12s ease-in-out infinite alternate;
-    }
-    .blur-circle:nth-child(1) {
-      background: #00b4d8;
-      width: 250px;
-      height: 250px;
-      top: 10%;
-      left: 15%;
-      animation-delay: 0s;
-    }
-    .blur-circle:nth-child(2) {
-      background: #6c63ff;
-      width: 350px;
-      height: 350px;
-      bottom: 10%;
-      right: 10%;
-      animation-delay: 2s;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0);
+      /* ===== Base Reset ===== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
       }
-      100% {
-        transform: translateY(-40px);
+
+      /* ===== Animated Gradient Background (Improvement #2) ===== */
+      body {
+        /* Updated gradient for more color depth */
+        background: linear-gradient(
+          -45deg,
+          #6c63ff,
+          #00b4d8,
+          #001f54,
+          #0a2a43
+        );
+        background-size: 400% 400%; /* Needed for animation */
+        animation: gradientShift 15s ease infinite; /* Animation added */
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: #fff;
+        overflow: hidden;
+        position: relative;
+        perspective: 1000px; /* Added for 3D card effect */
       }
-    }
 
-    /* ===== Glassmorphism Card ===== */
-    .card {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 20px;
-      padding: 50px 60px;
-      z-index: 10;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-      animation: fadeIn 1.5s ease;
-      max-width: 700px;
-    }
-
-    /* ===== Text Styles ===== */
-    h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-bottom: 15px;
-      text-transform: capitalize;
-      letter-spacing: 1px;
-      background: linear-gradient(to right, #ffffff, #e0e0e0);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: slideIn 1.3s ease;
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #e0e0e0;
-      margin-bottom: 40px;
-      line-height: 1.6;
-      animation: fadeIn 2s ease;
-    }
-
-    /* ===== Button ===== */
-    .btn {
-      padding: 12px 35px;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 30px;
-      text-decoration: none;
-      background: linear-gradient(135deg, #ffffff, #d3eaff);
-      color: #003049;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-    }
-
-    .btn:hover {
-      background: linear-gradient(135deg, #00b4d8, #6c63ff);
-      color: #fff;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
-    }
-
-    /* ===== Animations ===== */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
+      /* Keyframes for the background animation */
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
-      to {
-        opacity: 1;
-      }
-    }
 
-    @keyframes slideIn {
-      from {
-        transform: translateY(-20px);
-        opacity: 0;
+      /* ===== Floating Blur Circles (Kept from original) ===== */
+      .blur-circle {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px); /* Slightly stronger blur */
+        opacity: 0.7;
+        animation: float 12s ease-in-out infinite alternate;
       }
-      to {
-        transform: translateY(0);
-        opacity: 1;
+      .blur-circle:nth-child(1) {
+        background: #00b4d8;
+        width: 250px;
+        height: 250px;
+        top: 10%;
+        left: 15%;
+        animation-delay: 0s;
       }
-    }
-  </style>
-</head>
-<body>
-  <div class="blur-circle"></div>
-  <div class="blur-circle"></div>
+      .blur-circle:nth-child(2) {
+        background: #6c63ff;
+        width: 350px;
+        height: 350px;
+        bottom: 10%;
+        right: 10%;
+        animation-delay: 2s;
+      }
+      @keyframes float {
+        0% {
+          transform: translateY(0) translateX(0);
+        }
+        100% {
+          transform: translateY(-40px) translateX(20px);
+        }
+      }
 
-  <div class="card">
-    <h1>Student Performance Prediction</h1>
-    <p>
-      Unlock the power of data to predict student success. Analyze performance, 
-      identify patterns, and empower smarter learning decisions — all in one place.
-    </p>
-    <a href="#" class="btn">🚀 Get Started</a>
-  </div>
-</body>
+      /* ===== Glassmorphism Card (Improvement #3: Hover Effect) ===== */
+      .card {
+        background: rgba(255, 255, 255, 0.1); /* Slightly more transparent */
+        backdrop-filter: blur(20px); /* Stronger blur */
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        padding: 50px 60px;
+        z-index: 10;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 1.5s ease;
+        max-width: 700px;
+        transition: transform 0.4s ease, box-shadow 0.4s ease; /* Transition for hover */
+      }
+
+      /* This is the 3D hover effect */
+      .card:hover {
+        transform: scale(1.03) rotateX(5deg) rotateY(3deg);
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ===== Text Styles (Improvement #4: Staggered Animation) ===== */
+      h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        text-transform: capitalize;
+        letter-spacing: 1px;
+        background: linear-gradient(to right, #ffffff, #e0e0e0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* Animation 'fill-mode' and 'delay' added */
+        animation: slideIn 1.3s ease 0.3s backwards;
+      }
+      p {
+        font-size: 1.2rem;
+        color: #f0f0f0; /* Brighter text for better contrast */
+        margin-bottom: 40px;
+        line-height: 1.6;
+        /* Animation 'fill-mode' and 'delay' added */
+        animation: fadeIn 1.5s ease 0.6s backwards;
+      }
+
+      /* ===== Button ===== */
+      .btn {
+        padding: 12px 35px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 30px;
+        text-decoration: none;
+        background: linear-gradient(135deg, #ffffff, #d3eaff);
+        color: #003049;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+        /* Animation 'fill-mode' and 'delay' added */
+        animation: fadeIn 1.5s ease 0.9s backwards;
+        display: inline-block; /* Good practice for <a> tags as buttons */
+      }
+      .btn:hover {
+        background: linear-gradient(135deg, #00b4d8, #6c63ff);
+        color: #fff;
+        transform: translateY(-3px) scale(1.05); /* Added scale */
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      /* ===== Animations (Staggered) ===== */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* ===== Mobile Responsiveness (Improvement #5) ===== */
+      @media (max-width: 768px) {
+        .card {
+          max-width: 90%;
+          padding: 40px 30px;
+        }
+        h1 {
+          font-size: 2.2rem;
+        }
+        p {
+          font-size: 1rem;
+        }
+        .blur-circle:nth-child(1) {
+          width: 150px;
+          height: 150px;
+        }
+        .blur-circle:nth-child(2) {
+          width: 250px;
+          height: 250px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="blur-circle"></div>
+    <div class="blur-circle"></div>
+    <div class="card">
+      <h1>Student Performance Prediction</h1>
+      <p>
+        Unlock the power of data to predict student success. Analyze
+        performance, identify patterns, and empower smarter learning decisions —
+        all in one place.
+      </p>
+      <a href="home.html" target="blank" class="btn">🚀 Get Started</a>
+    </div>
+  </body>
 </html>
